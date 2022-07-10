@@ -30,12 +30,13 @@ public class Clientes {
     }
     
     public Cliente procuraCliente(String nome){
+        Cliente aux = null;
         for(Cliente c : clientes){
-            if(nome.equals(c.getName()))
-                return c;
-            break;
+            if(nome.equals(c.getName())){
+                aux = c;
+            }
         }
-        return null;   
+        return aux;   
     }
     
     public void printaClientes(){
