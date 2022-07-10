@@ -18,25 +18,31 @@ public class Catalogo {
         
     }
     
-    public void criaObra(){
-        Obra obra = new Obra();
-    }
-    
     public void adcObra(Obra obra, int qtd){
         catalogo.put(obra, qtd);
     }
     
-    public void addQtd(Obra obra, int qtd){
+    public void atualizaQtd(Obra obra, int qtd){
         catalogo.put(obra, qtd);
     }
     
+    
     public void removerObra(Obra obra){
         catalogo.remove(obra);
+        System.out.print("obra removida com sucesso");
+             
+    }
+    
+    public int qtdExemplar(Obra obra){
+        return (catalogo.get(obra));
     }
     
     public void printaObras(){
+        
         for(Obra obra : catalogo.keySet()){
-            System.out.println(obra.getTitulo());
+            System.out.println("Titulo: " + obra.getTitulo() + 
+            "    Quantidade: "  + catalogo.get(obra) + "    Local: " +
+            obra.getLocalizacao());
         }
     }
     

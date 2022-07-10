@@ -9,6 +9,7 @@ package com.mycompany.bookduck.Obra;
  * @author davi2
  */
 public class Obra {
+    //id é pra ser random
     private int id;
     private String titulo;
     private String dataPublicacao;

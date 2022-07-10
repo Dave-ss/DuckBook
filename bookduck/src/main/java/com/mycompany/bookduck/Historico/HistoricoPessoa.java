@@ -28,18 +28,22 @@ public class HistoricoPessoa {
     }
     
     
-    public void emprestimo(Obra obra, String data){
+    public boolean emprestimo(Obra obra, String data){
         String datas[] = new String[2];
         datas[0] = data;
         this.historico.put(obra, datas);
+        return true;
     }
     
-    public void devolucao(Obra obra, String data){
+    public boolean devolucao(Obra obra, String data){
+        boolean t = false;
         if (procuraObraHistorico(obra.getTitulo())){
             String[] aux = historico.get(obra).clone();
             aux[1] = data;
             this.historico.put(obra, aux);
+            t = true;
             }
+        return t;
     }
     
     public void printaHistorico(){

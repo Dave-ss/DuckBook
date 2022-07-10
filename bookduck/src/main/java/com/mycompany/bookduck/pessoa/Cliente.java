@@ -34,7 +34,8 @@ public class Cliente extends Pessoa{
     }
     
     public void emprestimo(Obra obra, String data){
-        this.historico.emprestimo(obra, data);
+        if(this.historico.emprestimo(obra, data))
+            System.out.println("Emprestimo bem sucedido.");
     }
     
     public void printaHistorico(){
@@ -47,7 +48,8 @@ public class Cliente extends Pessoa{
     }
             
     public void devolucao(Obra obra, String data){
-        this.historico.devolucao(obra, data);
+        if(this.historico.devolucao(obra, data))
+            System.out.println("devolução bem sucedida.");
     }
     
     public void atualizaFidelidade(int valor){

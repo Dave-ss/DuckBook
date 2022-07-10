@@ -42,6 +42,11 @@ public class Clientes {
     public void printaClientes(){
         for(Cliente c : clientes)
             System.out.println(c.getName());
+            
     }
     
+    public void printaEmprestimos(){
+        for(Cliente c : clientes)
+            c.printaEmprestados();
+    }
 }
