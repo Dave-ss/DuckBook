@@ -4,27 +4,26 @@
  */
 package com.mycompany.bookduck.pessoa;
 
+import com.mycompany.bookduck.Historico.HistoricoPessoa;
+import com.mycompany.bookduck.Obra.Obra;
+
 /**
  *
  * @author davi2
  */
 public class Cliente extends Pessoa{
     private int pontoDeFidelidade = 0;
-    //private hash de livro livrosEmpretados
-    //private hitorico<historico>
+    private HistoricoPessoa historico;
     
     
     public Cliente(){
-        
+        historico = new HistoricoPessoa();
     }
     
     public Cliente(int pontoDeFidelidade){
         this.pontoDeFidelidade = pontoDeFidelidade;
     }
     
-    private void buscaLivro(String nomeLivro){
-        
-    }
 
     public int getPontoDeFidelidade() {
         return pontoDeFidelidade;
@@ -34,12 +33,21 @@ public class Cliente extends Pessoa{
         this.pontoDeFidelidade = pontoDeFidelidade;
     }
     
-    public void emprestimo(String nomeLivro){
-        
+    public void emprestimo(Obra obra, String data){
+        this.historico.emprestimo(obra, data);
+    }
+    
+    public void printaHistorico(){
+        System.out.println("Historico de " + this.getName() + ":");
+        this.historico.printaHistorico();
+    }
+    public void printaEmprestados(){
+        System.out.println("livros emprestados por " + this.getName() + ":");
+        this.historico.printaEmprestados();
     }
             
-    public void devolucao(String nomeLivro){
-        
+    public void devolucao(Obra obra, String data){
+        this.historico.devolucao(obra, data);
     }
     
     public void atualizaFidelidade(int valor){

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Obra;
+package com.mycompany.bookduck.Obra;
 
 /**
  *
@@ -14,6 +14,14 @@ public class Obra {
     private String dataPublicacao;
     private String editora;
     private String localizacao;
+    
+    public Obra(){
+        
+    }
+    
+    public Obra(String titulo){
+        this.titulo = titulo;
+    }
 
     public void setId(int id) {
         this.id = id;
