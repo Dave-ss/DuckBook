@@ -6,6 +6,7 @@ import com.mycompany.bookduck.Historico.Catalogo;
 import com.mycompany.bookduck.Obra.Obra;
 import com.mycompany.bookduck.Clientes;
 import com.mycompany.bookduck.pessoa.Cliente;
+import com.mycompany.bookduck.pessoa.Funcionario;
 
 
 public class Bookduck {
@@ -14,6 +15,7 @@ public class Bookduck {
         System.out.println("|-----------------------------------|");
         System.out.println("|           (1) Cliente             |");
         System.out.println("|           (2) Obra                |");
+        System.out.println("|           (3) Funcionario         |");
         System.out.println("|           (0) Sair                |");
         System.out.println("|           (99) ver menu           |");
         System.out.println("|-----------------------------------|");
@@ -52,13 +54,23 @@ public class Bookduck {
         System.out.println("|-----------------------------------|");
     }
     
-     public static void menuObraAlteracao(){
+    public static void menuObraAlteracao(){
         System.out.println("|-----------------------------------|");
         System.out.println("|       (1) Alterar id              |");
         System.out.println("|       (2) Alterar local           |");
         System.out.println("|-----------------------------------|");
     }
-     
+    
+    public static void menuFuncionario(){
+        System.out.println("|-----------------------------------|");
+        System.out.println("|       (1) Cadastro de funcionario |");
+        System.out.println("|       (2) promocao do  func       |");
+        System.out.println("|       (3) Remoção de funcionario  |");
+        System.out.println("|       (4) printa todos os func    |");
+        System.out.println("|       (0) Sair                    |");
+        System.out.println("|-----------------------------------|");
+        
+    }
      
     private static void clearBuffer(Scanner scanner) {
         if (scanner.hasNextLine()) {
@@ -66,26 +78,19 @@ public class Bookduck {
         }
     }
     
-//    private static boolean verificaClienteVazio(Cliente aux){
-//        boolean t = false;
-//        if(aux == null){
-//            System.out.println("cliente nao encontrado.");
-//            t = true;
-//        }
-//        return t;
-//    }
-    
     
 
     public static void main(String[] args) {
         
         Catalogo catalogo = new Catalogo();
         Clientes clientes = new Clientes();
+        Funcionarios funcionarios = new Funcionarios();
 
         
         int opcao = 99;
         int cl = 0;
         int oo = 0;
+        int of = 0;
         do{
             Scanner entrada = new Scanner(System.in);
             if (opcao != 0)
@@ -125,7 +130,6 @@ public class Bookduck {
                             clearBuffer(entrada);
                             System.out.print("Nome do cliente que deseja add pf: ");
                             aux = clientes.procuraCliente(entrada.next());
-                            clearBuffer(entrada);
                             
                             if(aux != null){
                                 System.out.print("Quantidade de pontos que deseja add: ");
@@ -306,10 +310,72 @@ public class Bookduck {
                         
                     }while(oo != 0);
                 break; 
-               
-            
-            
-            
+                case 3:
+                    do{
+                        menuFuncionario();
+                        System.out.print("-> ");
+                        of = entrada.nextInt();
+                        System.out.println();
+                        Funcionario aux = null;
+                        switch(of){
+                            case 1:
+                                Funcionario f = new Funcionario();
+                                System.out.print("Nome: ");
+                                clearBuffer(entrada);
+
+                                f.setName(entrada.nextLine());
+
+                                System.out.print("Cpf: ");
+                                f.setCpf(entrada.next());
+
+                                System.out.print("Email: ");
+                                f.setEmail(entrada.next());
+                                
+                                System.out.println("Cargos: ");
+                                f.printaCargos();
+                                System.out.println();
+                                System.out.print("Cargo: ");
+                                f.setCargo(entrada.nextInt());
+                                
+                                System.out.println();
+                                funcionarios.addFuncionarios(f);
+                                break;
+                                
+                            case 2:
+                                clearBuffer(entrada);
+                                System.out.print("Nome do funcionario a ser promovido: ");
+                                aux = funcionarios.procuraFuncionario(entrada.next());
+                                if(aux == null){
+                                    System.out.println("Funcionario nao encontrado");
+                                    break;
+                                }
+                                 System.out.println("Cargos: ");
+                                aux.printaCargos();
+                                System.out.println();
+                                aux.descricaoCargo();
+                                System.out.print("Cargo: ");
+                                aux.setCargo(entrada.nextInt());
+                                
+                                break;
+                                
+                            case 3:
+                                clearBuffer(entrada);
+                                System.out.print("Nome do funcionario a ser removido: ");
+                                aux = funcionarios.procuraFuncionario(entrada.next());
+                                if(aux == null){
+                                    System.out.println("Funcionario nao encontrado");
+                                    break;
+                                }
+                                funcionarios.removerFuncionario(aux);
+                                break;
+                            
+                            case 4:
+                                funcionarios.printaFuncionarios();
+                                break;     
+                        }
+                        
+                    }while(of != 0);
+                break;
             }
         }while(opcao != 0);
     }

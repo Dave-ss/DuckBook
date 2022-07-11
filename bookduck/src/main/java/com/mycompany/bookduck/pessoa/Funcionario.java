@@ -9,45 +9,36 @@ package com.mycompany.bookduck.pessoa;
  * @author davi2
  */
 public class Funcionario extends Pessoa {
-    private int  vinculo;
+    private Cargo cargo;
     private int tempoDeServico;
     private double salario;
     private String dataContratacao;
     
    enum Cargo {
-        AuxiliarDeBiblioteca(1), Bibliotecario(2), 
-        AssistenteAdministrativo(3), Atendente(4), Recepcionista(5);
-
-        private final int id;
-
-        Cargo(int id) {
-            this.id = id;
-        }
-
-        public int getId() {
-            return id;
-        }
+        AuxiliarDeBiblioteca, Bibliotecario, 
+        AssistenteAdministrativo, Atendente, Recepcionista;  
     }
     
     public Funcionario(){
         
     }
 
-    public Funcionario(int vinculo, String dataContratacao){
-        this.vinculo = vinculo;
+    public Funcionario(Cargo vinculo, String dataContratacao){
+        this.cargo = vinculo;
         this.dataContratacao = dataContratacao;
     }
     
-    public Funcionario(int vinculo, String dataContratacao, double salario){
-        this.vinculo = vinculo;
+    public Funcionario(Cargo vinculo, String dataContratacao, double salario){
+        this.cargo = vinculo;
         this.dataContratacao = dataContratacao;
         this.salario = salario;
     }   
-    
-    public int getVinculo() {
-        return vinculo;
-    }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
+    
+    
     public int getTempoDeServico() {
         return tempoDeServico;
     }
@@ -60,9 +51,35 @@ public class Funcionario extends Pessoa {
         return dataContratacao;
     }
 
-    public void setVinculo(int vinculo) {
-        this.vinculo = vinculo;
+    public void setCargo(int numCargo) {
+        switch(numCargo){
+            case 1:
+                this.cargo = Cargo.AuxiliarDeBiblioteca;
+                break;
+            case 2:
+                this.cargo = Cargo.Bibliotecario;
+                break;
+            case 3:
+                this.cargo = Cargo.AssistenteAdministrativo;
+                break;
+            case 4:
+                this.cargo = Cargo.Atendente;
+                break;
+            case 5:
+                this.cargo = Cargo.Recepcionista;
+                break;
+              
+        }
+        
     }
+    
+    public void printaCargos(){
+        int i = 1;
+        for(Cargo c : Cargo.values()){
+            System.out.println(c + " " + i++);
+        }
+    }
+
 
     public void setTempoDeServico(int tempoDeServico) {
         this.tempoDeServico = tempoDeServico;
@@ -84,26 +101,26 @@ public class Funcionario extends Pessoa {
         
     }
     
-    public String descricaoCargo(){
-        switch(this.vinculo){
-            case 1 -> {
-                return "Auxilia nos serviços de aquisição, classificação, organização";
+    public void descricaoCargo(){
+        System.out.println("Descrição do cargo atual:   ");
+        switch(this.cargo){
+            case  AuxiliarDeBiblioteca-> {
+                System.out.println("Auxilia nos serviços de aquisição, classificação, organização");
             }
-            case 2 -> {
-                return "Organizar, manter e disponibilizar os acervos bibliograficos";
+            case Bibliotecario -> {
+                System.out.println("Organizar, manter e disponibilizar os acervos bibliograficos");
             }
-            case 3 -> {
-                return "Preparar relatórios, formulários e planilhas";
+            case AssistenteAdministrativo -> {
+                System.out.println("Preparar relatórios, formulários e planilhas");
             }
-            case 4 -> {
-                return "esponsável pelo atendimento - pessoal ou telefônico "
-                        + "- garantindo o suporte necessário ao cliente";
+            case Atendente -> {
+                System.out.println("esponsável pelo atendimento - pessoal ou telefônico "
+                        + "- garantindo o suporte necessário ao cliente");
             }
-            case 5 -> {
-                return "Recepcionar membros da comunidade e visitantes";
+            case Recepcionista -> {
+                System.out.println("Recepcionar membros da comunidade e visitantes");
             }
         }
-        return null;
     }
    
     
