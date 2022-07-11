@@ -5,13 +5,14 @@
 package com.mycompany.bookduck.Historico;
 
 import com.mycompany.bookduck.Obra.Obra;
+import java.io.Serializable;
 import java.util.HashMap;
 
 /**
  *
  * @author davi2
  */
-public class HistoricoPessoa {
+public class HistoricoPessoa implements Serializable {
     private HashMap<Obra, String[]> historico = new HashMap<>();
     //na string contem a data de emprestimo e a data de devolucao
     public HistoricoPessoa(){

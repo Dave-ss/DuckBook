@@ -6,12 +6,13 @@ package com.mycompany.bookduck.pessoa;
 
 import com.mycompany.bookduck.Historico.HistoricoPessoa;
 import com.mycompany.bookduck.Obra.Obra;
+import java.io.Serializable;
 
 /**
  *
  * @author davi2
  */
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa implements Serializable{
     private int pontoDeFidelidade = 0;
     private HistoricoPessoa historico;
     

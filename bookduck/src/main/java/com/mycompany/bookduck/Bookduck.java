@@ -7,6 +7,8 @@ import com.mycompany.bookduck.Obra.Obra;
 import com.mycompany.bookduck.Clientes;
 import com.mycompany.bookduck.pessoa.Cliente;
 import com.mycompany.bookduck.pessoa.Funcionario;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class Bookduck {
@@ -80,12 +82,12 @@ public class Bookduck {
     
     
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, FileNotFoundException, ClassNotFoundException {
         
         Catalogo catalogo = new Catalogo();
         Clientes clientes = new Clientes();
         Funcionarios funcionarios = new Funcionarios();
-
+        clientes.carregarArquivo();
         
         int opcao = 99;
         int cl = 0;
@@ -237,7 +239,7 @@ public class Bookduck {
                             break;
 
                     }
-                        
+                    clientes.alterarArquivo();  
                     }while(cl != 0);    
                 break; 
                 
