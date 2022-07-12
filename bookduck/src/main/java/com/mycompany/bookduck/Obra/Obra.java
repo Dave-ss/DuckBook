@@ -24,6 +24,14 @@ public class Obra {
         this.titulo = titulo;
     }
 
+    public Obra(String titulo, String dataPublicacao, String editora, String localizacao) {
+        this.titulo = titulo;
+        this.dataPublicacao = dataPublicacao;
+        this.editora = editora;
+        this.localizacao = localizacao;
+    }
+    
+
     public void setId(int id) {
         this.id = id;
     }
