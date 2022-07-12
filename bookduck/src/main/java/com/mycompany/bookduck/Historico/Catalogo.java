@@ -76,7 +76,7 @@ public class Catalogo {
             objeto.write(String.valueOf(catalogo.get(o)));
             objeto.append("=");
         }
-        objeto.close();        
+        objeto.close();
     }
     
     public void carregarArquivo(Catalogo catalogo) throws FileNotFoundException, IOException, ClassNotFoundException{
@@ -84,7 +84,7 @@ public class Catalogo {
             FileReader file = new FileReader("catalogo.txt");
             BufferedReader objeto = new BufferedReader(file);
             StringBuilder content = new StringBuilder();
-
+            
             List<String> obras = new ArrayList<>(Arrays.asList((objeto.readLine()).split("=")));
                         
             for(String o : obras){

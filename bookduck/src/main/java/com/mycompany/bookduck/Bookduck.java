@@ -267,7 +267,7 @@ public class Bookduck {
                                 obra.setDataPublicacao(entrada.nextLine());
                                 
                                 System.out.print("Editora: ");
-                                obra.setDataPublicacao(entrada.nextLine());
+                                obra.setEditora(entrada.nextLine());
                                 
                                 System.out.print("Localização: ");
                                 obra.setLocalizacao(entrada.nextLine());
