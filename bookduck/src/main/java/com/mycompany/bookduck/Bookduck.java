@@ -34,7 +34,7 @@ public class Bookduck {
         System.out.println("|       (7) devolução de livro      |");
         System.out.println("|       (8) printa emprestimos      |");
         System.out.println("|       (9) printa historico        |");
-        System.out.println("|       (0) Sair                    |");
+        System.out.println("|       (0) Voltar                  |");
         System.out.println("|-----------------------------------|");
         
     }
@@ -52,7 +52,7 @@ public class Bookduck {
         System.out.println("|       (2) Alteraçao de obra       |");
         System.out.println("|       (3) Remoção de obra         |");
         System.out.println("|       (4) printa todos as obras   |");
-        System.out.println("|           (0) Sair                |");
+        System.out.println("|       (0) Voltar                  |");
         System.out.println("|-----------------------------------|");
     }
     
@@ -69,7 +69,7 @@ public class Bookduck {
         System.out.println("|       (2) promocao do  func       |");
         System.out.println("|       (3) Remoção de funcionario  |");
         System.out.println("|       (4) printa todos os func    |");
-        System.out.println("|       (0) Sair                    |");
+        System.out.println("|       (0) Voltar                  |");
         System.out.println("|-----------------------------------|");
         
     }
@@ -87,9 +87,12 @@ public class Bookduck {
         Catalogo catalogo = new Catalogo();
         Clientes clientes = new Clientes();
         Funcionarios funcionarios = new Funcionarios();
+        catalogo.carregarArquivo(catalogo);
         clientes.carregarArquivo(clientes);
+        funcionarios.carregarArquivo(funcionarios);
         
-        int opcao = 99;
+        
+        int opcao = 99; 
         int cl = 0;
         int oo = 0;
         int of = 0;
@@ -238,8 +241,9 @@ public class Bookduck {
                             aux.printaHistorico();
                             break;
 
-                    }
-                    clientes.alterarArquivo();  
+                        }
+                        clientes.alterarArquivo();  
+                    
                     }while(cl != 0);    
                 break; 
                 
@@ -310,7 +314,9 @@ public class Bookduck {
                                 clientes.printaEmprestimos();
                         }
                         
+                        
                     }while(oo != 0);
+                    catalogo.alterarArquivo();
                 break; 
                 case 3:
                     do{
@@ -339,6 +345,9 @@ public class Bookduck {
                                 System.out.print("Cargo: ");
                                 f.setCargo(entrada.nextInt());
                                 
+                                System.out.print("Salario: ");
+                                f.setSalario(entrada.nextDouble());
+                                
                                 System.out.println();
                                 funcionarios.addFuncionarios(f);
                                 break;
@@ -357,6 +366,8 @@ public class Bookduck {
                                 aux.descricaoCargo();
                                 System.out.print("Cargo: ");
                                 aux.setCargo(entrada.nextInt());
+                                System.out.print("Salario: ");
+                                aux.setSalario(entrada.nextDouble());
                                 
                                 break;
                                 
@@ -375,7 +386,8 @@ public class Bookduck {
                                 funcionarios.printaFuncionarios();
                                 break;     
                         }
-                        
+                        funcionarios.alterarArquivo();
+                  
                     }while(of != 0);
                 break;
             }
