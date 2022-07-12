@@ -13,6 +13,15 @@ public class Pessoa {
     private String email;
     private String name;
 
+    public Pessoa() {
+    }
+
+    public Pessoa(String cpf, String email, String name) {
+        this.cpf = cpf;
+        this.email = email;
+        this.name = name;
+    }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }

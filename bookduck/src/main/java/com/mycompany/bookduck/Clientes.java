@@ -7,6 +7,7 @@ package com.mycompany.bookduck;
 import java.util.ArrayList;
 import com.mycompany.bookduck.pessoa.Cliente;
 import java.io.*;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +16,7 @@ import java.util.logging.Logger;
  * @author davi2
  */
 public class Clientes implements Serializable {
-    private List<Cliente> clientes = new ArrayList<Cliente>();
+    private final ArrayList<Cliente> clientes = new ArrayList<>();
     
     
     public Clientes(){
@@ -54,27 +55,37 @@ public class Clientes implements Serializable {
     }
     
     public void alterarArquivo() throws FileNotFoundException, IOException{
-        FileOutputStream file = new FileOutputStream("G:/ssd prog/Java/DuckBook/bookduck/src/main/java/arquivos/clientes.file");
-        ObjectOutputStream objeto = new ObjectOutputStream(file);
-        objeto.writeObject(this.clientes);
-        objeto.flush();        
+        FileWriter file = new FileWriter("clientes.txt");
+        BufferedWriter objeto = new BufferedWriter(file);
+        for(Cliente c : this.clientes){
+            objeto.write(c.getName());
+            objeto.append(",");
+            objeto.write(c.getCpf());
+            objeto.append(",");
+            objeto.write(c.getEmail());
+            objeto.append(",");
+            objeto.write(String.valueOf(c.getPontoDeFidelidade()));
+            objeto.append("=");
+        }
+        objeto.close();        
     }
     
-    public void carregarArquivo() throws FileNotFoundException, IOException, ClassNotFoundException{
+    public void carregarArquivo(Clientes clientes) throws FileNotFoundException, IOException, ClassNotFoundException{
         try{
-            FileInputStream file = new FileInputStream("G:/ssd prog/Java/DuckBook/bookduck/src/main/java/arquivos/clientes.file");
-            ObjectInputStream objeto = new ObjectInputStream(file);
-            
-            ArrayList cliente = (ArrayList<Cliente>)objeto.readObject();
-            objeto.close();
-            System.out.printf("arraylist de objetos: %s\n", cliente);
-            
-            for(Object c : cliente){
-                System.out.printf("nome: %s\n", ((Cliente) c).getName());
-                this.addCliente((Cliente) c);
+            FileReader file = new FileReader("clientes.txt");
+            BufferedReader objeto = new BufferedReader(file);
+            StringBuilder content = new StringBuilder();
+
+            List<String> pessoas = new ArrayList<>(Arrays.asList((objeto.readLine()).split("=")));
+                        
+            for(String p : pessoas){
+                content.append(p);
+                ArrayList<String> myList;
+                myList = new ArrayList<>(Arrays.asList((p).split(",")));
+                Cliente c = new Cliente(myList.get(0), myList.get(1), myList.get(2), Integer.valueOf(myList.get(3)));
+                clientes.addCliente(c);
             }
-        } catch(FileNotFoundException e){
-            
+        } catch(FileNotFoundException e){    
             System.out.println("arquivo inexistente");
         }
     }

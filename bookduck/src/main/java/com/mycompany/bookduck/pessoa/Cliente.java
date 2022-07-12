@@ -21,6 +21,12 @@ public class Cliente extends Pessoa implements Serializable{
         historico = new HistoricoPessoa();
     }
     
+    public Cliente(String nome, String cpf, String email, int pontos){
+        super(cpf, email, nome);
+        this.pontoDeFidelidade = pontos;
+        historico = new HistoricoPessoa();
+    }
+    
     public Cliente(int pontoDeFidelidade){
         this.pontoDeFidelidade = pontoDeFidelidade;
     }
