@@ -14,7 +14,7 @@ public class Funcionario extends Pessoa {
     private double salario;
     private String dataContratacao;
     
-   enum Cargo {
+    public enum Cargo {
         AuxiliarDeBiblioteca, Bibliotecario, 
         AssistenteAdministrativo, Atendente, Recepcionista;  
     }
@@ -25,6 +25,12 @@ public class Funcionario extends Pessoa {
 
     public Funcionario(Cargo vinculo, String dataContratacao){
         this.cargo = vinculo;
+        this.dataContratacao = dataContratacao;
+    }
+    
+    public Funcionario(String nome, String cpf, String email, String vinculo, String dataContratacao){
+        super(cpf, email, nome);
+        this.cargo = Cargo.valueOf(vinculo);
         this.dataContratacao = dataContratacao;
     }
     
