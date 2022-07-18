@@ -19,7 +19,6 @@ public class Bookduck {
         System.out.println("|           (2) Obra                |");
         System.out.println("|           (3) Funcionario         |");
         System.out.println("|           (0) Sair                |");
-        System.out.println("|           (99) ver menu           |");
         System.out.println("|-----------------------------------|");
     }
     
