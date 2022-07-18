@@ -156,6 +156,9 @@ public class Bookduck {
                                 if (cla == 1){
                                     System.out.print("\nDigite o novo email: ");
                                         aux.setEmail(entrada.next());
+                                } else if (cla == 2) {
+                                    System.out.println("Cliente: " + aux.getName());
+                                    System.out.println("pf: " + aux.getPontoDeFidelidade());
                                 }
                             }
                             break;
@@ -199,6 +202,9 @@ public class Bookduck {
                             if (qtd >= 1){
                             aux.emprestimo(obra, "data emprestimo");
                             catalogo.atualizaQtd(obra, qtd-1);
+                            }
+                            else{
+                                System.out.println("Obra nao disponivel");
                             }
                             break;
                         
